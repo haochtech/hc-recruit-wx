@@ -1,0 +1,41 @@
+<view class="container">
+    <view class="header">
+        <view class="title">我要推荐奖励</view>
+        <view class="content">
+     提交推荐前请先与好友沟通，并与我们的客服人员联系，以免漏掉奖励。
+确认好友没有通过其他渠道联系招聘人员。
+推荐好友成功入职后，达到要求可获取奖励（根据公司和工种不同，奖励不同，约50-1000以上）。
+      </view>
+    </view>
+    <form reportSubmit bindsubmit="savepubinfo">
+        <view class="repairform">
+            <view class="main">
+                <view class="list">
+                    <view class="item">
+                        <view class="name">好友姓名</view>
+                        <view class="selectitem">
+                            <input name="name" placeholder="请输入您好友的姓名" type="text"></input>
+                        </view>
+                    </view>
+                    <view class="item">
+                        <view class="name">意向公司</view>
+                        <view class="selectitem">
+                            <input name="companyname" placeholder="请输入您好友要去的公司" type="text"></input>
+                        </view>
+                    </view>
+                    <view class="item">
+                        <view class="name">联系方式</view>
+                        <view class="selectitem">
+                            <input name="tel" placeholder="请输入您好友的手机号" type="text"></input>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="weixinmao-float">
+            <view class="weixinmao-foot">
+                <button class="footer" formType="submit">提交申请</button>
+            </view>
+        </view>
+    </form>
+</view>

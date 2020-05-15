@@ -1,0 +1,48 @@
+<view class="container">
+    <view class="header">
+        <view class="pic">
+            <image src="{{data.avatarUrl}}"></image>
+            <view>{{data.name}}</view>
+        </view>
+    </view>
+    <view class="list">
+        <view bindtap="doCall" class="item" data-tel="{{data.tel}}">
+            <text class="fa fa-phone  fa-fw"></text>  {{data.tel}}</view>
+        <view bindtap="copyText" class="item" data-weixin="{{data.weixin}}">
+            <text class="fa fa-weixin  fa-fw"></text> {{data.weixin}}</view>
+        <view bindtap="copyText" class="item" data-weixin="{{data.email}}">
+            <text class="fa fa-envelope-o fa-fw"></text>  {{data.email}}</view>
+    </view>
+</view>
+<view class="weixinmao-float">
+    <view class="weixinmao-foot">
+        <view bindtap="doCall" class="footer" data-tel="{{data.tel}}">
+            <image src="../../resource/img/tel.png"></image>联系经纪人</view>
+        <view bindtap="Changeagent" class="footer">
+            <image src="../../resource/images/lbs.png"></image>设为我的经纪人</view>
+    </view>
+</view>
+
+<view class="weixinmao-msg-userinfo" hidden="{{isuser}}">
+    <view class="weixinmao-content-userinfo">
+        <view class="userinfo-title">
+          需要您的授权
+        </view>
+        <view class="userinfo-content">
+            <view>为了提供更好的服务</view>
+            <view>请稍后在提示框上点击“允许”。</view>
+        </view>
+        <view class="userinfo-img">
+            <image src="../../resource/images/getinfo.png"></image>
+        </view>
+        <view class='flex btns'>
+          <view class="cancel-button">
+            <button bindtap='cancel_login'>暂不授权</button>
+          </view>
+          
+          <view class="userinfo-button">
+              <button bindgetuserinfo="bindGetUserInfo" openType="getUserInfo">我知道了</button>
+          </view>
+        </view>
+    </view>
+</view>

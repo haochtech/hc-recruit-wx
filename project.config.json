@@ -1,0 +1,37 @@
+{
+	"libVersion": "1.2",
+	"appid": "wx99123cddf0a61dcb",
+	"projectname": "%E5%90%8C%E5%9F%8E%E6%9C%8D%E5%8A%A1",
+	"setting": {
+		"newFeature": true
+	},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": 0,
+					"name": "授权",
+					"pathName": "weixinmao_zp/pages/mysave/index",
+					"query": "",
+					"scene": null
+				}
+			]
+		}
+	}
+}

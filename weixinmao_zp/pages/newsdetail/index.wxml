@@ -1,0 +1,15 @@
+<import src="../../resource/wxParse/wxParse.wxml"></import>
+<view class="container">
+    <view class="title">
+        <view>{{data.title}}</view>
+        <view>{{data.createtime}}</view>
+    </view>
+    <view class="content">
+        <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
+    </view>
+</view>
+<view class="u-tap-btn">
+    <navigator class="u-go-home" openType="switchTab" url="/weixinmao_zp/pages/index/index">
+        <view class="iconfont fa fa-home"></view>
+    </navigator>
+</view>

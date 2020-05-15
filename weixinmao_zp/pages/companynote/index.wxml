@@ -1,0 +1,31 @@
+<view class="container">
+    <view class="orderlist" wx:for="{{list}}">
+        <view class="orderid">应聘职位 : {{item.jobtitle}}      <view class="vpricenote" wx:if="{{item.shareid>0}}">奖金简历</view>
+        </view>
+        <view class="content">
+            <view class="item jobdata">应聘人 : {{item.name}} </view>
+            <block wx:if="{{item.shareid>0}}">
+                <view class="item money">支付赏金 : ￥{{item.money}} </view>
+                <view class="item money">入职赏金 : ￥{{item.lastmoney}} </view>
+            </block>
+            <view class="item jobdata">性  别 : {{item.sex==1?'男':'女'}} </view>
+            <view class="item jobdata" wx:if="{{item.shareid==0}}">联系电话 : {{item.tel}}</view>
+            <block wx:else>
+                <view class="item jobdata" wx:if="{{item.paid==1}}">联系电话 : {{item.tel}}</view>
+            </block>
+            <view class="item jobdata">创建时间 : {{item.createtime}}</view>
+            <view class="payitem">
+                <view bindtap="toNote" data-id="{{item.noteid}}" hidden="" wx:if="{{item.shareid==0}}">查看简历</view>
+                <block wx:else>
+                    <view bindtap="pay" data-id="{{item.id}}" hidden="" wx:if="{{item.paid==0}}">支付赏金看简历</view>
+                    <block wx:else>
+                        <view bindtap="payjob" data-id="{{item.id}}" hidden="" wx:if="{{item.paidlast==0}}">支付入职赏金</view>
+                        <view bindtap="toNote" data-id="{{item.noteid}}" hidden="">查看简历</view>
+                    </block>
+                </block>
+                <view bindtap="JobNotice" data-id="{{item.id}}" hidden="" wx:if="{{item.status==0}}">邀请面试</view>
+                <view data-id="{{item.id}}" hidden="" wx:else>已邀请</view>
+            </view>
+        </view>
+    </view>
+</view>

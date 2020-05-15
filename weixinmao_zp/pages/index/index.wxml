@@ -1,0 +1,261 @@
+<view class="container" hidden="{{isshow}}">
+    <view class="header">
+        <navigator hoverClass="none" url="../city/index?id=0">
+            <view class="city">
+                <text class="fa fa-map-marker  fa-lg"></text> {{city}}
+    </view>
+        </navigator>
+        <view bindtap="toSearch" class="search">
+            <icon size="14" type="search"></icon>
+            <view>请输入相关职位名称</view>
+        </view>
+    </view>
+    <view class="swiper-container">
+        <swiper autoplay="{{autoplay}}" bindchange="bindchange" circular="{{circular}}" class="swiper_box" duration="{{duration}}" interval="{{interval}}" style="height:{{imgheights[current]}}rpx;">
+            <swiper-item wx:for="{{banners}}">
+                <image bindload="imageLoad" bindtap="{{item.toway}}" class="slide-image" data-appid="{{item.appid}}" data-id="{{item.link}}" src="{{item.thumb}}" style="height:{{imgheights[current]}}rpx;width:{{imgwidth}}rpx;"></image>
+            </swiper-item>
+        </swiper>
+        <view class="dots">
+            <view class="dot{{index==swiperCurrent?' active':''}}" wx:for="{{banners}}" wx:key="index"></view>
+        </view>
+    </view>
+    <view class="navlist" wx:if="{{navlist!=''}}">
+        <view class="item" wx:for="{{navlist}}">
+            <form reportSubmit bindsubmit="{{item.link}}">
+                <button class="shares" formType="submit" style="background-image:url({{item.thumb}}); background-repeat:no-repeat;background-size:100% 100%;"></button>
+                <input hidden="true" name="appid" type="text" value="{{item.appid}}"></input>
+                <input hidden="true" name="innerurl" type="text" value="{{item.innerurl}}"></input>
+                <input hidden="true" name="id" type="text" value="{{item.id}}"></input>
+            </form>
+            <view>{{item.advname}}</view>
+        </view>
+    </view>
+    <view class="navlist" wx:else>
+        <view class="item">
+            <form reportSubmit bindsubmit="toFindjob">
+                <button class="shares" formType="submit" style="background-image:url(https://api.site100.cn/jobimg/findjob.png); background-repeat:no-repeat;background-size:100% 100%;"></button>
+            </form>
+            <view>找工作</view>
+        </view>
+        <view class="item">
+            <form reportSubmit bindsubmit="toFindworker">
+                <button class="shares" formType="submit" style="background-image:url(https://api.site100.cn/jobimg/findwork.png); background-repeat:no-repeat;background-size:100% 100%;"></button>
+            </form>
+            <view>招人才</view>
+        </view>
+        <view class="item">
+            <form reportSubmit bindsubmit="toActive">
+                <button class="shares" formType="submit" style="background-image:url(https://api.site100.cn/jobimg/metting.png); background-repeat:no-repeat;background-size:100% 100%;"></button>
+            </form>
+            <view>招聘会</view>
+        </view>
+        <view class="item">
+            <form reportSubmit bindsubmit="toArticle">
+                <button class="shares" formType="submit" style="background-image:url(https://api.site100.cn/jobimg/news.png); background-repeat:no-repeat;background-size:100% 100%;"></button>
+            </form>
+            <view>职场资讯</view>
+        </view>
+        <view class="item">
+            <form reportSubmit bindsubmit="toMyNote">
+                <button class="shares" formType="submit" style="background-image:url(https://api.site100.cn/jobimg/publish_resume.png); background-repeat:no-repeat;background-size:100% 100%;"></button>
+            </form>
+            <view>发布简历</view>
+        </view>
+        <view class="item">
+            <form reportSubmit bindsubmit="toMySave">
+                <button class="shares" formType="submit" style="background-image:url(https://api.site100.cn/jobimg/save.png); background-repeat:no-repeat;background-size:100% 100%;"></button>
+            </form>
+            <view>我的收藏</view>
+        </view>
+        <view class="item">
+            <form reportSubmit bindsubmit="toNotice">
+                <button class="shares" formType="submit" style="background-image:url(https://api.site100.cn/jobimg/notice.png); background-repeat:no-repeat;background-size:100% 100%;"></button>
+            </form>
+            <view>面试通知</view>
+        </view>
+        <view class="item">
+            <form reportSubmit bindsubmit="toLogin">
+                <button class="shares" formType="submit" style="background-image:url(https://api.site100.cn/jobimg/company.png); background-repeat:no-repeat;background-size:100% 100%;"></button>
+            </form>
+            <view>企业登录</view>
+        </view>
+    </view>
+    <block wx:if="{{ischeck==0}}">
+        <view class="addjob">
+            <view bindtap="toMyNote">
+                <text class="fa fa-pencil-square-o  fa-lg"></text>写简历找工作</view>
+            <view bindtap="toAddCompanyjob">
+                <text class="fa fa-pencil-square-o  fa-lg"></text>免费发布职位</view>
+        </view>
+        <block wx:if="{{intro.iscompany==1}}">
+            <view class="news">
+                <view class="newstitle">
+                    <view></view>
+                    <view>名企专区</view>
+                </view>
+            </view>
+            <view class="type-container">
+                <scroll-view class="type-navbar" scrollX="true" style="width: 100%">
+                    <view class="type-box" wx:for="{{companylist}}">
+                        <view bindtap="toCompanydetial" class="type-navbar-item " data-id="{{item.id}}">
+                            <image src="{{item.thumb}}" style="width:200rpx; height:200rpx;"></image>
+                        </view>
+                    </view>
+                </scroll-view>
+            </view>
+        </block>
+        <block wx:if="{{intro.isnote==1}}">
+            <view class="news">
+                <view class="newstitle">
+                    <view></view>
+                    <view>最新人才</view>
+                </view>
+            </view>
+            <view class="type-container">
+                <scroll-view class="type-navbar" scrollX="true" style="width: 100%;height:270rpx; color:#999999;">
+                    <view class="type-box" wx:for="{{notelist}}">
+                        <view bindtap="toWorkerdetial" class="type-navbar-item " id="{{item.id}}">
+                            <image src="{{item.avatarUrl}}" style="width:200rpx;height:200rpx;border-radius:100rpx;"></image>
+                        </view>
+                {{item.name}}
+            </view>
+                </scroll-view>
+            </view>
+        </block>
+        <view class="news">
+            <view class="newstitle">
+                <view></view>
+                <view>最新职位</view>
+            </view>
+            <view class="newslist" wx:for="{{joblist}}">
+                <view bindtap="{{item.toJobDetail}}" class="title" data-id="{{item.id}}">
+                    <view class="address">
+                        <view class="jobname"> {{item.title}} </view>
+                        <view>
+                            <block wx:if="{{item.money==0}}">面议</block>
+                            <block wx:else>{{item.money}}元/月</block>
+                        </view>
+                    </view>
+                    <view class="joblable">
+                        <view>{{item.areaname}}|<block wx:if="{{item.sex==1}}"> 男</block>
+                            <block wx:elif="{{item.sex==2}}">女</block>
+                            <block wx:else>男女不限</block>|{{item.age}}</view>
+                        <view class="vprice2"></view>
+                    </view>
+                    <view class="special">
+                        <view class="item" wx:for="{{item.special}}" wx:for-item="itemSpecial">{{itemSpecial}}</view>
+                    </view>
+                    <view class="detail">
+                        <view class="pic">
+                            <image src="{{item.thumb}}"></image>
+                        </view>
+                        <view class="info">
+                            <view class="companyinfo">
+                                <view> {{item.companyname}} </view>
+                                <view>{{item.address}}</view>
+                            </view>
+                            <view class="jobmoney">
+                                <view class="vprice" wx:if="{{item.vprice>0}}">推荐人才赚红包</view>
+                                <view class="vprice" style="background:#fff;" wx:else></view>
+                                <view>{{item.createtime}} </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <block wx:else>
+        <view class="case">
+            <view class="casetitle">
+                <view></view>
+                <view>企业介绍</view>
+            </view>
+            <view class="content">
+            {{intro.content}}......
+         
+         </view>
+        </view>
+        <view class="case">
+            <view class="casetitle">
+                <view></view>
+                <view>我们的服务</view>
+            </view>
+            <view class="caselist">
+                <view class="caseitem" wx:for="{{glist}}">
+                    <view bindtap="toNewsDetail" class="pic" data-id="{{item.id}}">
+                        <image src="{{item.thumb}}"></image>
+                    </view>
+                    <view bindtap="toNewsDetail" class="title" data-id="{{item.id}}">
+                             {{item.title}}
+                          </view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <view hidden="{{!isshow}}">
+        <view class="container">
+            <view class="swiper-container">
+                <swiper autoplay="{{autoplay}}" class="swiper_box" duration="{{duration}}" interval="{{interval}}">
+                    <swiper-item wx:for="{{banners}}">
+                        <image bindtap="tapBanner" class="slide-image" data-id="{{item.id}}" src="{{item.thumb}}"></image>
+                    </swiper-item>
+                </swiper>
+                <view class="dots">
+                    <view class="dot{{index==swiperCurrent?' active':''}}" wx:for="{{banners}}" wx:key="unique"></view>
+                </view>
+            </view>
+        </view>
+        <view class="type-container2">
+            <scroll-view class="type-navbar2" scrollX="true">
+                <view class="type-box2" wx:for="{{category}}">
+                    <view bindtap="tabClick" class="type-navbar-item2 {{activeCategoryId==item.id?'type-item-on':''}}" id="{{item.id}}">
+                    {{item.name}}
+                </view>
+                </view>
+            </scroll-view>
+        </view>
+        <view class="container">
+            <view class="news2">
+                <view class="newslist" wx:for="{{article}}">
+                    <view bindtap="toNewsDetail" class="pic" data-id="{{item.id}}">
+                        <image src="{{item.thumb}}"></image>
+                    </view>
+                    <view bindtap="toNewsDetail" class="title" data-id="{{item.id}}">
+                        <view>{{item.title}}</view>
+                        <view>{{item.createtime}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="weixinmao-msg-userinfo" hidden="{{isuser}}">
+    <view class="weixinmao-content-userinfo">
+        <view class="userinfo-title">
+          需要您的授权
+        </view>
+        <view class="userinfo-content">
+            <view>为了提供更好的服务</view>
+            <view>请稍后在提示框上点击“允许”。</view>
+        </view>
+        <view class="userinfo-img">
+            <image src="../../resource/images/getinfo.png"></image>
+        </view>
+        <view class='flex btns'>
+          <view class="cancel-button">
+            <button bindtap='cancel_login'>暂不授权</button>
+          </view>
+          
+          <view class="userinfo-button">
+              <button bindgetuserinfo="bindGetUserInfo" openType="getUserInfo">我知道了</button>
+          </view>
+        </view>
+    </view>
+</view>
+<view class="u-tap-btn">
+    <button class="u-go-home2" openType="contact">
+        <view class="iconfont fa fa-comments-o"></view>
+    </button>
+</view>

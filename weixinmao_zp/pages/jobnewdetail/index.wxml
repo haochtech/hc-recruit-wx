@@ -1,0 +1,60 @@
+<import src="../../resource/wxParse/wxParse.wxml"></import>
+<view class="container" hidden="{{isshow}}">
+    <view class="jobinfo">
+        <view class="jobtitle">
+            <view>{{data.title}}</view>
+            <view>正在招聘</view>
+        </view>
+        <view class="joblabel">
+            <view>{{data.money}}元/月</view>
+            <view>|</view>
+            <view>{{data.areaname}}</view>
+        </view>
+    </view>
+    <view class="jobdetail">
+        <view class="jobtitle">职位详情</view>
+    </view>
+    <view class="jobcontent">
+        <view class="detail">
+            <template is="wxParse" data="{{wxParseData:article.nodes}}"></template>
+        </view>
+    </view>
+</view>
+<view class="weixinmao-float">
+    <view class="weixinmao-foot">
+        <view bindtap="doSavejob" class="{{savestatus==1?'red':'black'}}" data-id="{{data.companyid}}">
+            <text class="fa fa-heart-o fa-lg"></text> 收藏</view>
+        <view class="footer" data-id="{{data.companyid}}">
+            <button bindtap="toSharejob" class="footerbuttons" data-id="{{data.id}}">分享职位</button>
+        </view>
+        <view class="footer" data-id="{{data.companyid}}">
+            <button bindgetuserinfo="bindGetUserInfo" class="footerbuttons" hidden="{{isuser}}" openType="getUserInfo">投递简历</button>
+            <form bindsubmit="doSendjob" reportSubmit="true">
+                <button bindgetuserinfo="bindGetUserInfo" class="footerbuttons" formType="submit" hidden="{{!isuser}}" openType="getUserInfo">投递简历</button>
+            </form>
+        </view>
+    </view>
+</view>
+<view class="weixinmao-msg-userinfo" hidden="{{isuser}}">
+    <view class="weixinmao-content-userinfo">
+        <view class="userinfo-title">
+          需要您的授权
+        </view>
+        <view class="userinfo-content">
+            <view>为了提供更好的服务</view>
+            <view>请稍后在提示框上点击“允许”。</view>
+        </view>
+        <view class="userinfo-img">
+            <image src="../../resource/images/getinfo.png"></image>
+        </view>
+        <view class='flex btns'>
+          <view class="cancel-button">
+            <button bindtap='cancel_login'>暂不授权</button>
+          </view>
+          
+          <view class="userinfo-button">
+              <button bindgetuserinfo="bindGetUserInfo" openType="getUserInfo">我知道了</button>
+          </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,21 @@
+<view class="container">
+    <view class="orderlist" wx:for="{{list}}">
+        <view class="orderid">姓名:{{item.name}}</view>
+        <view class="content">
+            <view class="item">性别:   <block wx:if="{{item.sex==1}}">男 </block>
+                <block wx:else> 女 </block>
+            </view>
+            <view class="item">电话:{{item.tel}}</view>
+            <view class="item">返费:￥{{item.money}}元</view>
+            <view class="item">派遣时间:{{item.createtime}}</view>
+            <block wx:if="{{item.status>0}}">
+                <view class="item">入职时间:{{item.gettime}}</view>
+                <view class="item" wx:if="{{item.paid==0}}">付费期限:{{item.getpaytime}}</view>
+            </block>
+            <view class="payitem">
+                <view bindtap="setsendnote" data-id="{{item.id}}" hidden="" wx:if="{{item.status==0}}">接收入职</view>
+                <view bindtap="RepayOrder" data-id="{{item.id}}" hidden="" wx:else>支付返费</view>
+            </view>
+        </view>
+    </view>
+</view>

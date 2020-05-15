@@ -1,0 +1,77 @@
+<form reportSubmit bindsubmit="savepubinfo">
+    <view class="container">
+        <view class="main">
+            <view class="list">
+                <view class="title">
+                    <view>视频上传</view>
+                    <view>(禁止上传不良视频)</view>
+                </view>
+                <view class="item">
+                    <view bindtap="chooseVideo" class="uploadimg">
+                        <image src="../../resource/images/upvideo.png"></image>
+                        <view class="uploadtitle">视频限于20M</view>
+                    </view>
+                </view>
+            </view>
+            <view class="list" style="display:{{isvideo}};">
+                <view class="imgsbox">
+                    <view class="weui-uploader">
+                        <view class="img-v">
+                            <view class="imgvedio">
+                                <video src="{{src}}" style="width:660rpx;height:400rpx;"></video>
+                                <view catchtap="deleteImg1" class="delete-btn" data-index="{{index}}"></view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="list">
+                <view class="title">
+                    <view>形像照片</view>
+                    <view>(至少上传3张图,禁止上传不良图片)</view>
+                </view>
+                <view class="item">
+                    <view bindtap="chooseImg" class="uploadimg">
+                        <image src="../../resource/images/upload.png"></image>
+                        <view class="uploadtitle">上传照片最多3张</view>
+                    </view>
+                </view>
+            </view>
+            <view class="list" style="display:{{show}};">
+                <view class="imgsbox">
+                    <view class="weui-uploader">
+                        <view class="img-v">
+                            <view class="img" wx:for="{{imgs1}}" wx:key="*this">
+                                <image bindtap="previewImg1" data-index="{{index}}" mode="aspectFill" src="{{item}}"></image>
+                                <view catchtap="deleteImg1" class="delete-btn" data-index="{{index}}">照片
+            </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+            <view class="list">
+                <view class="title">
+                    <view>个人介绍</view>
+                    <view>(简略介绍自己才艺)</view>
+                </view>
+                <view class="item">
+                    <view class="weui-cells_after-title">
+                        <view class="weui-cell">
+                            <view class="weui-cell__bd">
+                                <textarea focus bindinput="bindTextAreaChange" class="weui-textarea" maxlength="{{noteMaxLen}}" name="content" placeholder="请填写个人介绍..." style="height: 6em" value="{{notevideo.content}}"></textarea>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="weixinmao-float">
+        <view class="weixinmao-foot">
+            <view class="footer">
+                <button class="footerbuttons bg2" formType="submit">保存简历</button>
+            </view>
+        </view>
+    </view>
+</form>

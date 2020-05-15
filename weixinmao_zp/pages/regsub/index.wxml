@@ -1,0 +1,53 @@
+<view class="container">
+    <form reportSubmit bindsubmit="savepubinfo">
+        <view class="repairform">
+            <view class="main">
+                <view class="list">
+                    <view class="item">
+                        <view class="name">姓  名</view>
+                        <view class="selectitem">
+                            <input name="name" placeholder="请输入您的姓名" type="text"></input>
+                        </view>
+                    </view>
+                    <view class="item">
+                        <view class="name">面试日期</view>
+                        <view class="selectitem">
+                            <picker bindchange="bindDateChange" end="" mode="date" start="" value="{{date}}">
+                                <view class="picker">  
+        {{dates?dates:'请选择面试日期'}}
+    </view>
+                            </picker>
+                        </view>
+                    </view>
+                    <view class="item">
+                        <view class="name">入职日期</view>
+                        <view class="selectitem">
+                            <picker bindchange="bindDatejobChange" end="" mode="date" start="" value="{{jobdate}}">
+                                <view class="picker">  
+        {{jobdates?jobdates:'请选择入职日期'}}
+    </view>
+                            </picker>
+                        </view>
+                    </view>
+                    <view class="item">
+                        <view class="name">在职公司</view>
+                        <view class="selectitem">
+                            <input name="companyname" placeholder="请输入您在的公司名称" type="text"></input>
+                        </view>
+                    </view>
+                    <view class="item">
+                        <view class="name">联系方式</view>
+                        <view class="selectitem">
+                            <input name="tel" placeholder="请输入您的手机号" type="text"></input>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="weixinmao-float">
+            <view class="weixinmao-foot">
+                <button class="footer" formType="submit">提交申请</button>
+            </view>
+        </view>
+    </form>
+</view>
